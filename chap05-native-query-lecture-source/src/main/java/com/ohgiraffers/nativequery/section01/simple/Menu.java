@@ -1,8 +1,8 @@
-package com.ohgiraffers.jpql.section05.join;
+package com.ohgiraffers.nativequery.section01.simple;
 
 import jakarta.persistence.*;
 
-@Entity(name = "section05Menu")
+@Entity(name = "sction01Menu")
 @Table(name = "tbl_menu")
 public class Menu {
 
@@ -16,19 +16,20 @@ public class Menu {
     @Column(name = "menu_price")
     private int menuPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "category_code")
-    private Category category;
+    @Column(name = "category_code")
+    private int categoryCode;
 
     @Column(name = "orderable_status")
     private String orderableStatus;
 
-    protected Menu() {}
+    protected Menu() {
+    }
 
-    public Menu(int menuCode, String menuName, int menuPrice, Category category, String orderableStatus) {
+    public Menu(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
         this.menuCode = menuCode;
         this.menuName = menuName;
         this.menuPrice = menuPrice;
+        this.categoryCode = categoryCode;
         this.orderableStatus = orderableStatus;
     }
 
@@ -44,10 +45,9 @@ public class Menu {
         return menuPrice;
     }
 
-    public Category getCategory() {
-        return category;
+    public int getCategoryCode() {
+        return categoryCode;
     }
-
 
     public String getOrderableStatus() {
         return orderableStatus;
@@ -59,7 +59,7 @@ public class Menu {
                 "menuCode=" + menuCode +
                 ", menuName='" + menuName + '\'' +
                 ", menuPrice=" + menuPrice +
-                ", category=" + category +
+                ", categoryCode=" + categoryCode +
                 ", orderableStatus='" + orderableStatus + '\'' +
                 '}';
     }

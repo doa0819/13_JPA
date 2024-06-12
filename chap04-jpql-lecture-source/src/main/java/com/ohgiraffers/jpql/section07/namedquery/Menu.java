@@ -1,9 +1,18 @@
-package com.ohgiraffers.jpql.section05.join;
+package com.ohgiraffers.jpql.section07.namedquery;
 
 import jakarta.persistence.*;
 
-@Entity(name = "section05Menu")
+@Entity(name = "section07Menu")
 @Table(name = "tbl_menu")
+@NamedQueries({
+        @NamedQuery(name = "section07Manu.selectMenuList",
+                    query = "SELECT m FROM section07Menu m"),
+
+        @NamedQuery(name = "section07Manu.selectMenuList2",
+                query = "SELECT m FROM section07Menu  m WHERE m.menuName = :menuName AND m.categoryCode = :categoryCode ")
+
+})
+
 public class Menu {
 
     @Id
@@ -16,19 +25,19 @@ public class Menu {
     @Column(name = "menu_price")
     private int menuPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "category_code")
-    private Category category;
+    @Column(name = "category_code")
+    private int categoryCode;
 
     @Column(name = "orderable_status")
     private String orderableStatus;
 
     protected Menu() {}
 
-    public Menu(int menuCode, String menuName, int menuPrice, Category category, String orderableStatus) {
+    public Menu(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
         this.menuCode = menuCode;
         this.menuName = menuName;
         this.menuPrice = menuPrice;
+        this.categoryCode = categoryCode;
         this.orderableStatus = orderableStatus;
     }
 
@@ -44,10 +53,9 @@ public class Menu {
         return menuPrice;
     }
 
-    public Category getCategory() {
-        return category;
+    public int getCategoryCode() {
+        return categoryCode;
     }
-
 
     public String getOrderableStatus() {
         return orderableStatus;
@@ -59,8 +67,13 @@ public class Menu {
                 "menuCode=" + menuCode +
                 ", menuName='" + menuName + '\'' +
                 ", menuPrice=" + menuPrice +
-                ", category=" + category +
+                ", categoryCode=" + categoryCode +
                 ", orderableStatus='" + orderableStatus + '\'' +
                 '}';
+    }
+
+    public void setMenuName(String menuName) {
+
+        this.menuName = menuName;
     }
 }

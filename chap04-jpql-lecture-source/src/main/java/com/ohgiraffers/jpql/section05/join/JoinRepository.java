@@ -1,6 +1,5 @@
 package com.ohgiraffers.jpql.section05.join;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
