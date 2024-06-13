@@ -91,6 +91,8 @@ public class NativeQueryTests {
 
         /* 상황 : category 기준으로 카테고리 별 메뉴의 개수를 조회하고 싶다.*/
         // COALESCE 함수 : 여러 개의 인수(컬럼)를 전달할 수 있으며 Left Join 으로 인해 null 이 발생 할 수 있기 때문에 0을 넣어주겠다.
+        // COALESCE : 여러 개의 인자를 받고 첫 번째로 NULL이 아닌 값을 반환
+        // COALESCE(v.menu_count, 0) menu_count ->  menu_count 가 null 이면 0으로 반환
 
         String query = "SELECT a.category_code, a.category_name, a.ref_category_code, COALESCE(v.menu_count, 0) menu_count" +
                 " FROM tbl_category a" +

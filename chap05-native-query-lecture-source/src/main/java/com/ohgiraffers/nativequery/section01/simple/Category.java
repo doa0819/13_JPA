@@ -25,6 +25,8 @@ import jakarta.persistence.*;
         )
 
 })
+// COALESCE : 여러 개의 인자를 받고 첫 번째로 NULL이 아닌 값을 반환
+// COALESCE(v.menu_count, 0) menu_count ->  menu_count 가 null 이면 0으로 반환
 
 @NamedNativeQuery(
         name = "namedNativeQueryMapping",
