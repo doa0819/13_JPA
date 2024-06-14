@@ -123,31 +123,7 @@ public class MenuController {
 
     }
 
-    // 메뉴 수정
-    @GetMapping("/modify")
-    public void modifyPage(){}
-
-    @PostMapping("/modify")
-    public String modifyMenu(MenuDTO modifyMenu){
-
-        service.modifyMenu(modifyMenu);
 
 
-
-        return "redirect:/menu/" + modifyMenu.getMenuCode();
-    }
-
-    // 메뉴 삭제
-    @GetMapping("/delete")
-    public void deletePage(){}
-
-    @PostMapping("/delete")
-    // @RequestParam  int menuCode => RequestParam 요청을 보낼건데 그 변수를 menuCode 에 담겠다
-    public String deleteMenu(@RequestParam  int menuCode){
-        service.deleteMenu(menuCode);
-
-
-        return "redirect:/menu/list";
-    }
 
 }
