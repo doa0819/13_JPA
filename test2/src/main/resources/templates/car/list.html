@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1> 차량 조회를 해보자</h1>
+    <table>
+        <tr>
+            <th>차량번호</th>
+            <th>차량이름</th>
+            <th>대여목적</th>
+            <th>대여일</th>
+            <th>반납일</th>
+            <th>대여여부</th>
+            <th>수정</th>
+        </tr>
+        <tr th:each="car : ${carList}">
+            <th th:text="${car.carNo}"></th>
+            <th th:text="${car.carName}"></th>
+            <th th:text="${car.carPurpose}"></th>
+            <th th:text="${car.carReservationDate}"></th>
+            <th th:text="${car.carReturnDueDate}"></th>
+            <th th:text="${car.carRentalStatus}"></th>
+            <th>
+                <button onclick="location.href='/car/modify'">수정</button>
+            </th>
+        </tr>
+    </table>
+</body>
+</html>

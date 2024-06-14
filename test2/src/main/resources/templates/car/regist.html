@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>차량등록</h1>
+    <form action="/car/regist" method="post">
+        <label>차량번호</label>
+        <input type="number" name="carNo"><br>
+        <label>차량이름</label>
+        <input type="text" name="carName"><br>
+        <label>차량목적</label>
+        <input type="text" name="carPurpose"><br>
+        <label>대여날짜</label>
+        <input type="date" name="carReservationDate"><br>
+        <label>반납날짜</label>
+        <input type="date" name="carReturnDueDate"><br>
+        <label>대여여부</label>
+        <select name="carRentalStatus">
+            <option value="Y">대여가능</option>
+            <option value="N">대여불가능</option>
+        </select>
+
+        <input type="submit" value="차량등록하기">
+    </form>
+
+</body>
+</html>

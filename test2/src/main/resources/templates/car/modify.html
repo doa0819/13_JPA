@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 style="text-align: center; color: aqua">차량 수정을 해볼까?</h1>
+    <form action="/car/modify/" method="post">
+        <label>차량번호</label>
+        <input type="number" name="carNo">
+        <label>차량이름</label>
+        <input type="text" name="carName">
+        <label>대여목적</label>
+        <input type="text" name="carPurpose">
+        <label>대여날짜</label>
+        <input type="date" name="carReservationDate">
+        <label>반납날짜</label>
+        <input type="date" name="carReturnDueDate">
+        <select name="carRentalStatus">
+            <option value="Y">대여가능</option>
+            <option value="N">대여불가능</option>
+        </select>
+    </form>
+
+
+</body>
+</html>

@@ -6,6 +6,7 @@ import com.ohgiraffers.springdatajpa.menu.model.dao.CategoryRepository;
 import com.ohgiraffers.springdatajpa.menu.model.dao.MenuRepository;
 import com.ohgiraffers.springdatajpa.menu.model.dto.CategoryDTO;
 import com.ohgiraffers.springdatajpa.menu.model.dto.MenuDTO;
+import jakarta.persistence.Temporal;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,5 +95,30 @@ public class MenuService {
         // save 는 entity 를 받으니깐 우리는 현재 DTO 를 받고 있기 때문에 DTO -> entity 로 바꿔야 한다
         repository.save(modelMapper.map(menuDTO, Menu.class));
 
+    }
+
+    // 수정
+    @Transactional
+    public void modifyMenu(MenuDTO modifyMenu) {
+
+        Menu foundMenu = repository.findById(modifyMenu.getMenuCode()).orElseThrow(IllegalArgumentException::new);
+
+        /* 1. setter 사용해서 수정해보기  - setter 사용은 지양한다.*/
+//        foundMenu.setMenuName(modifyMenu.getMenuName());
+
+        /* 2. @Builder */
+//        foundMenu = foundMenu.toBuilder().menuName(modifyMenu.getMenuName()).build();
+//        repository.save(foundMenu);
+
+        /* 3. Entity 클래스 내부에서 builder 패턴을 사용해서 구현 */
+        foundMenu = foundMenu.menuName(modifyMenu.getMenuName()).builder();
+        repository.save(foundMenu);
+    }
+
+    // 삭제
+    @Transactional
+    public void deleteMenu(int menuCode) {
+
+        repository.deleteById(menuCode);
     }
 }
